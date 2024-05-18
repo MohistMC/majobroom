@@ -21,20 +21,5 @@ public class Networking {
                 .simpleChannel()
                 .build();
 
-        INSTANCE.registerMessage(
-                nextID(),
-                RidePack.class,
-                RidePack::toBytes,
-                RidePack::new,
-                RidePack::handler
-        );
-        INSTANCE.registerMessage(
-                nextID(),
-                SummonBroomPack.class,
-                SummonBroomPack::toBytes,
-                SummonBroomPack::new,
-                SummonBroomPack::handler
-        );
-
     }
 }
