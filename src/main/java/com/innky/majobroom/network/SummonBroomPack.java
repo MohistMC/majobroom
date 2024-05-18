@@ -47,7 +47,8 @@ public record SummonBroomPack() implements CustomPacketPayload {
 //        broomEntity.setYHeadRot(playerEntity.getYHeadRot());
         broomEntity.setYRot(player.getYRot());
         broomEntity.setPos(player.getX(), player.getY(), player.getZ());
-        broomEntity.setControlMode(itemStack.getOrDefault(CONTROL_MODE,false));
+        //broomEntity.setControlMode(itemStack.getOrDefault(CONTROL_MODE,false));
+        broomEntity.setControlMode(false);
         player.level().addFreshEntity(broomEntity);
         if (!player.isCreative()) {
             itemStack.shrink(1);

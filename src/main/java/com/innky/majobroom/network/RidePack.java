@@ -43,7 +43,7 @@ public record RidePack(int entityId, boolean isRide) implements CustomPacketPayl
                 broomEntity.remove(Entity.RemovalReason.KILLED);
                 ItemStack itemStack = new ItemStack(ItemRegistry.broomItem.get());
 
-                itemStack.getOrDefault(CONTROL_MODE, broomEntity.getControlMode());
+                //itemStack.getOrDefault(CONTROL_MODE, broomEntity.getControlMode());
                 if (!player.isCreative() && !player.getInventory().add(itemStack)) {
                     broomEntity.spawnAtLocation(broomEntity.getDropItem());
                 }

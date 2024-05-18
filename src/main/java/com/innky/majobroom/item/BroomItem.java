@@ -38,7 +38,8 @@ public class BroomItem extends Item {
             if (!worldIn.isClientSide) {
                 MajoBroomEntity broomEntity = new MajoBroomEntity(EntityTypeRegistry.majoBroom.get(), worldIn);
                 broomEntity.setPos(blockPos.getX() + 0.5, blockPos.getY() + 1.5, blockPos.getZ() + 0.5);
-                broomEntity.setControlMode(itemStack.getOrDefault(CONTROL_MODE,false)); // "control_mode"
+                //broomEntity.setControlMode(itemStack.getOrDefault(CONTROL_MODE,false)); // "control_mode"
+                broomEntity.setControlMode(false); // "control_mode"
                 worldIn.addFreshEntity(broomEntity);
                 itemStack.shrink(1);
             }

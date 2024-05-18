@@ -1,5 +1,6 @@
 package com.innky.majobroom;
 
+import com.innky.majobroom.registry.ComponentRegistry;
 import com.innky.majobroom.registry.EntityTypeRegistry;
 import com.innky.majobroom.registry.ItemRegistry;
 import com.innky.majobroom.registry.KeyboardRegistry;
@@ -26,5 +27,6 @@ public class ModMajoBroom {
         EntityTypeRegistry.register(modEventBus);
 
         modEventBus.register(KeyboardRegistry.class);
+        modEventBus.register(ComponentRegistry.class);
     }
 }
