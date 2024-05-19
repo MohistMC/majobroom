@@ -25,8 +25,7 @@ public class ModMajoBroom {
         var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemRegistry.register(modEventBus);
         EntityTypeRegistry.register(modEventBus);
-
+        ComponentRegistry.register(modEventBus);
         modEventBus.register(KeyboardRegistry.class);
-        modEventBus.register(ComponentRegistry.class);
     }
 }
