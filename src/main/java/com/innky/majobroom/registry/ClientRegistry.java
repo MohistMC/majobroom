@@ -20,6 +20,6 @@ public class ClientRegistry {
 
     @SubscribeEvent
     public static void onClientSetUpEvent(RegisterColorHandlersEvent.Item event) {
-       // event.register((stack, color) -> color > 0 ? -1 : DyedItemColor.getOrDefault(stack, DyedItemColor.LEATHER_COLOR), ItemRegistry.HAT);
+        event.register((stack, color) -> color > 0 ? -1 : DyedItemColor.getOrDefault(stack, DyedItemColor.LEATHER_COLOR), ItemRegistry.HAT.get());
     }
 }

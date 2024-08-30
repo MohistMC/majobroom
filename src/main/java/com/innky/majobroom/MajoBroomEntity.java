@@ -25,6 +25,7 @@ import net.minecraft.world.entity.animal.WaterAnimal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -34,6 +35,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+
+import static com.innky.majobroom.registry.ComponentRegistry.CONTROL_MODE;
 
 
 public class MajoBroomEntity extends Boat {
@@ -376,7 +380,13 @@ public class MajoBroomEntity extends Boat {
             if (level().isClientSide) {
                 if (Minecraft.getInstance().player != null) {
                     if (Minecraft.getInstance().options.keyShift.isDown() && player.getUUID() == Minecraft.getInstance().player.getUUID()) {
-                        //PacketDistributor.sendToServer(new RidePack(this.getId(), false));
+                        this.remove(Entity.RemovalReason.KILLED);
+                        ItemStack itemStack = new ItemStack(ItemRegistry.broomItem.get());
+
+                        itemStack.getOrDefault(CONTROL_MODE.get(), this.getControlMode());
+                        if (!player.isCreative() && !player.getInventory().add(itemStack)) {
+                            this.spawnAtLocation(this.getDropItem());
+                        }
                         level().playSound(player, player.blockPosition(), SoundEvents.ENDER_EYE_LAUNCH, SoundSource.NEUTRAL, 10F, 1f);
                         addParticle(this.level(), getX() - 0.5, getY() + 0.3, getZ() - 0.5, 30, 2, 1, ParticleTypes.SMOKE);
                     }
@@ -421,7 +431,7 @@ public class MajoBroomEntity extends Boat {
                 hasPassenger = true;
                 if (this.getPassengers().isEmpty()) {
                     assert Minecraft.getInstance().player != null;
-                    //PacketDistributor.sendToServer(new RidePack(this.getId(), true));
+                    player.startRiding(this);
 
                 }
             }
